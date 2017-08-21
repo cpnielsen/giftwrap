@@ -5,6 +5,7 @@ from .file_rule import FileRule
 from .directory_rule import DirectoryRule
 from .postinst_script_rule import PostInstallScriptRule
 from .log_directory_rule import LogDirectoryRule
+from .symlink_rule import SymlinkRule
 
 
 __all__ = (
@@ -15,4 +16,5 @@ __all__ = (
     DirectoryRule.__name__,
     PostInstallScriptRule.__name__,
     LogDirectoryRule.__name__,
+    SymlinkRule.__name__
 )
