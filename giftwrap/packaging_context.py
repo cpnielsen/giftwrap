@@ -120,6 +120,7 @@ class PackagingContext(object):
         """
 
         self.postinst_commands = []
+        self.symlinks = []
 
         for rule in package.rules:
             rule.apply(package, self)
@@ -129,6 +130,7 @@ class PackagingContext(object):
         self._write_postinst(package)
         self._write_copyright(package)
         self._write_conffiles(package)
+        self._write_symlinks(package)
 
     def _write_postinst(self, package):
         """Write the postinst file during the build process.
@@ -248,6 +250,12 @@ class PackagingContext(object):
 
         # Write the configuration files to the control file.
         write_lines_to_file(conffiles, self.control_path('conffiles'))
+
+    def _write_symlinks(self, package):
+        """Writes the symlinks to $mypackage links"""
+        if self.symlinks:
+            links_file = '%s.links' % package.name
+            write_lines_to_file(self.symlinks, self.control_path(links_file))
 
     def pack(self,
              package,
