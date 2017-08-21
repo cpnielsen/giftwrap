@@ -11,14 +11,11 @@ class SymlinkRule(Rule):
         self._linkname = linkname
 
     def apply(self, package, context):
-        destination_dir = context.data_dir_path(
-            os.path.dirname(self._linkname)
-        )
         source_dir = context.data_dir_path(
             os.path.dirname(self._source)
         )
 
         os.symlink(
             os.path.join(source_dir, os.path.basename(self._source)),
-            os.path.join(destination_dir, os.path.basename(self._linkname))
+            os.path.basename(self._linkname)
         )
