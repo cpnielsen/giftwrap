@@ -256,6 +256,7 @@ class PackagingContext(object):
         if self.symlinks:
             for source, linkname in self.symlinks:
                 lname = self.data_dir_path(linkname)
+                print '%s <- %s' % (source, lname)
                 os.symlink(source, lname)
 
     def pack(self,
