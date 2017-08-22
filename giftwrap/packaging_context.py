@@ -254,8 +254,9 @@ class PackagingContext(object):
     def _write_symlinks(self, package):
         """Writes the symlinks to $mypackage links"""
         if self.symlinks:
-            links_file = '%s.links' % package.name
-            write_lines_to_file(self.symlinks, self.control_path(links_file))
+            for source, linkname in self.symlinks:
+                lname = self.data_dir_path(linkname)
+                os.symlink(source, lname)
 
     def pack(self,
              package,

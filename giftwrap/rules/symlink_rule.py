@@ -6,7 +6,7 @@ class SymlinkRule(Rule):
     """
 
     def __init__(self, source, linkname):
-        self._symlink = "%s %s" % (source, linkname)
+        self._symlink = (source, linkname)
 
     def apply(self, package, context):
         context.symlinks += [self._symlink]
