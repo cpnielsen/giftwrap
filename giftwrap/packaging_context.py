@@ -255,7 +255,7 @@ class PackagingContext(object):
         """Writes the symlinks to $mypackage links"""
         if self.symlinks:
             for source, linkname in self.symlinks:
-                lname = self.data_dir_path(linkname)
+                lname = os.path.join(self._data_path, linkname)
                 print '%s <- %s (%s)' % (source, lname, linkname)
                 os.symlink(source, lname)
 
